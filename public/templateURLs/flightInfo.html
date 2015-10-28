@@ -1,0 +1,33 @@
+<div ng-controller="flightCtrl">
+    <div class="row">
+        <div class="span9">
+            <h2>廉價航空票價查詢</h2>
+            <div class="span4">
+                <div class="row-fluid"> 
+                    選擇出發機場&nbsp;&nbsp;<select ng-model="chooseOriAirport" ng-options="t as t.title+' '+t.code for t in oriAirport" ng-change="selectDepAirport()"></select>
+                    選擇抵達機場&nbsp;&nbsp;<select ng-model="chooseDestAirport" ng-options="t as t.title+' '+t.code for t in destAirport" ng-change="selectArlAirport()"></select>
+
+                    出發日期&nbsp;<input type="text" ng-model="depDate" jqdatepicker />
+
+                    &nbsp;</br><button ng-click="flightSearch()">搜尋</button>
+                    
+                    
+                </div>
+            </div>
+
+            <div>
+            <table style="border:3px #FFAC55 solid;padding:5px;" rules="all" cellpadding="5";>
+                <tr ng-repeat="x in flightInfos">
+                    <td>{{ x.company }}</td>
+                    <td>{{ x.flightNo }}</td>
+                    <td>{{ x.depTime }}</td>
+                    <td>{{ x.arlTime }}</td>
+                    <td>{{ x.flightPrice }}</td>
+                    <td>{{ x.currency }}</td>
+                </tr>
+            </table> 
+            </div>
+
+        </div>
+    </div>
+</div>
