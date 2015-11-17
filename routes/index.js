@@ -576,7 +576,7 @@
         console.log('123123123');
 
         var job = new CronJob({
-          cronTime: '0 */1 * * * *',
+          cronTime: '0 30 9,15,22 * * *',
           onTick: function() {
             sendTicketMail();
             console.log('123123123');
