@@ -1,3 +1,4 @@
+'use strict'
 angular.module('cheapFlightApp', ['ui.router'])
     .config([
         '$stateProvider',
@@ -20,11 +21,33 @@ angular.module('cheapFlightApp', ['ui.router'])
         }*/
         var retObj = {};
         retObj.getFilght = function(queryString, callBack) {
-            console.log(queryString.replace('/home', ''));
-            $http.get('/getFlightInfos' + queryString.replace('/home', '')).success(function(data) {
-                callBack(data);
+            console.log(queryString);
+            // console.log(queryString.replace('/home', ''));
 
-            });
+                    $http({
+                        method: 'POST',
+                        url: '/getFlightInfos',
+                        params: {
+                            company: queryString.company,
+                            depDateYY: queryString.depDateYY,
+                            depDateMM: queryString.depDateMM,
+                            depDateDD: queryString.depDateDD,
+                            oriCode: queryString.oriCode,
+                            dstCode: queryString.dstCode
+                        }
+
+                    })
+                    .then(function(response) {
+                        console.log('message123123123');
+                      console.log(response.status);
+                      console.log(response.data);
+                      callBack(response.data);
+                    }, function(response) {
+                        console.log('message123123123dfgdfg');
+                      console.log(response.data || "Request failed");
+                      console.log(response.status);
+                  });
+
         };
         return retObj;
     }])
@@ -80,32 +103,32 @@ angular.module('cheapFlightApp', ['ui.router'])
                 flightNo: '航班資訊',
                 currency: '貨幣'
             };
-            var queryUrl1 = $location.search({
-                company: 'JetStar',
-                depDateYY: dateYY,
-                depDateMM: dateMM,
-                depDateDD: dateDD,
-                oriCode: oriCode,
-                dstCode: dstCode
-            }).$$url;
+            // var queryUrl1 = $location.search({
+            //     company: 'JetStar',
+            //     depDateYY: dateYY,
+            //     depDateMM: dateMM,
+            //     depDateDD: dateDD,
+            //     oriCode: oriCode,
+            //     dstCode: dstCode
+            // }).$$url;
 
-            var queryUrl2 = $location.search({
-                company: 'Peach',
-                depDateYY: dateYY,
-                depDateMM: dateMM,
-                depDateDD: dateDD,
-                oriCode: oriCode,
-                dstCode: dstCode
-            }).$$url;
+            // var queryUrl2 = $location.search({
+            //     company: 'Peach',
+            //     depDateYY: dateYY,
+            //     depDateMM: dateMM,
+            //     depDateDD: dateDD,
+            //     oriCode: oriCode,
+            //     dstCode: dstCode
+            // }).$$url;
 
-            var queryUrl3 = $location.search({
-                company: 'TigerAir',
-                depDateYY: dateYY,
-                depDateMM: dateMM,
-                depDateDD: dateDD,
-                oriCode: oriCode,
-                dstCode: dstCode
-            }).$$url;
+            // var queryUrl3 = $location.search({
+            //     company: 'TigerAir',
+            //     depDateYY: dateYY,
+            //     depDateMM: dateMM,
+            //     depDateDD: dateDD,
+            //     oriCode: oriCode,
+            //     dstCode: dstCode
+            // }).$$url;
 
             //console.log(queryUrl);                       
             //console.log('messagesssss');
@@ -129,7 +152,15 @@ angular.module('cheapFlightApp', ['ui.router'])
     flightPrice: '3798',
     flightNo: '3K721',
     currency: 'TWD' } ]);*/
-            flightData.getFilght(queryUrl1, function(result) {
+            flightData.getFilght({
+                company: 'JetStar',
+                depDateYY: dateYY,
+                depDateMM: dateMM,
+                depDateDD: dateDD,
+                oriCode: oriCode,
+                dstCode: dstCode
+            }, function(result) {
+
                 console.log(result);
                 var i = 0;
                 for (i = 0; i < result.length; i++) {
@@ -138,23 +169,23 @@ angular.module('cheapFlightApp', ['ui.router'])
                 //.concat(result);
             });
 
-            flightData.getFilght(queryUrl2, function(result) {
-                console.log(result);
-                var i = 0;
-                for (i = 0; i < result.length; i++) {
-                    flightInfos.push(result[i]);
-                }
-                //.concat(result);
-            });
+            // flightData.getFilght(queryUrl2, function(result) {
+            //     console.log(result);
+            //     var i = 0;
+            //     for (i = 0; i < result.length; i++) {
+            //         flightInfos.push(result[i]);
+            //     }
+            //     //.concat(result);
+            // });
 
-            flightData.getFilght(queryUrl3, function(result) {
-                console.log(result);
-                var i = 0;
-                for (i = 0; i < result.length; i++) {
-                    flightInfos.push(result[i]);
-                }
-                //.concat(result);
-            });
+            // flightData.getFilght(queryUrl3, function(result) {
+            //     console.log(result);
+            //     var i = 0;
+            //     for (i = 0; i < result.length; i++) {
+            //         flightInfos.push(result[i]);
+            //     }
+            //     //.concat(result);
+            // });
 
             //$scope.flightInfos=result;
             //flightData.getFilght();
