@@ -616,7 +616,7 @@
 
         var queryFunctionList=[];
 
-        //queryFunctionList.push(getJetStarHtmlBody);
+        queryFunctionList.push(getJetStarHtmlBody);
         queryFunctionList.push(getPeachHtmlBody);
         //queryFunctionList.push(getTigerAirHtmlBody);
         var j = 0;
