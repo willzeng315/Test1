@@ -642,7 +642,7 @@
                     console.log(flightResults);
                     res.send(flightResults);
 
-                     var mailOptions = {
+                     /*var mailOptions = {
                          from: 'yesazcl@gmail.com', // sender address
                          to: 'yesazcl@gmail.com', // list of receivers
                          subject: '航班資訊' +queryParamAry[0].oriCode + '->' + queryParamAry[0].dstCode+ ' (' + getDateTime() + ')', // Subject line
@@ -656,7 +656,7 @@
                          }
                          console.log('Message sent: ' + info.response);
 
-                     });
+                     });*/
                  }
              });
          }(queryParamAry[0], 0));
