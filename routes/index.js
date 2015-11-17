@@ -550,7 +550,7 @@
                      var mailOptions = {
                          from: 'yesazcl@gmail.com', // sender address
                          to: 'yesazcl@gmail.com', // list of receivers
-                         subject: '航班資訊' +queryParam.oriCode + '->' + queryParam.dstCode+ ' (' + getDateTime() + ')', // Subject line
+                         subject: '航班資訊' +queryParam.oriCode + '->' + queryParam.dstCode, // Subject line
                          html: htmlStr // html body
                      };
 
@@ -576,7 +576,7 @@
         console.log('123123123');
 
         var job = new CronJob({
-          cronTime: '0 34 9,14,22 * * *',
+          cronTime: '0 0 2,7,12 * * *',
           onTick: function() {
             sendTicketMail();
             console.log('123123123');
